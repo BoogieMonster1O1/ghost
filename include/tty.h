@@ -11,6 +11,7 @@ size_t strlen(const char* str);
 extern size_t terminal_row;
 extern size_t terminal_column;
 extern uint8_t terminal_color;
+extern uint8_t terminal_bg_color;
 extern uint16_t* terminal_buffer;
 
 void terminal_initialize(void);

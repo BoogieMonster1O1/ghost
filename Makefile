@@ -27,3 +27,6 @@ clean:
 	rm -f $(OBJ_FILES) $(TARGET)
 
 .PHONY: all clean
+
+run:
+	qemu-system-i386 -kernel ghost.bin

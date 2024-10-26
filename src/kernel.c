@@ -10,9 +10,9 @@ void kernel_main(void) {
 	terminal_initialize();
 
 	terminal_writestring("Hello, kernel World!\n");
-	terminal_writestring("This is a test of the terminal driver.\n");
+	terminal_writestring("This is a test of the terminal.\n");
 	for (int i = 0; i < 26; i++) {
-		terminal_setcolor(i % 16);
+		terminal_setcolor(vga_entry_color(i % 16, (i + 8) % 16));
 		terminal_putchar('A' + i);
 		delay_cycle(30000000);
 	}
