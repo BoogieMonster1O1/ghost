@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.tcc": "cpp",
+        "idt.h": "c",
+        "terminal.h": "c",
+        "stdbool.h": "c",
+        "tty.h": "c",
+        "vga.h": "c"
+    }
+}
