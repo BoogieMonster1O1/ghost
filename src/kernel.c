@@ -1,19 +1,16 @@
 #include "tty.h"
 #include "idt.h"
+#include "i386.h"
 
 #define PIC1_COMMAND 0x20
 #define PIC1_DATA 0x21
 #define PIC2_COMMAND 0xA0
 #define PIC2_DATA 0xA1
 
-static inline void outb(uint16_t port, uint8_t value) {
-    __asm__ volatile ("outb %0, %1" : : "a"(value), "Nd"(port));
-}
-
-void delay_cycle(int cycles) {
-	for (int i = 0; i < cycles; i++) {
-		asm volatile("nop");
-	}
+bool check_apic() {
+   uint32_t eax, edx;
+   cpuid(1, &eax, &edx);
+   return edx & CPUID_FEAT_EDX_APIC;
 }
 
 void mask_interrupts() {
@@ -36,15 +33,21 @@ void kernel_main(void) {
 	mask_interrupts();
 	terminal_initialize();
 
-	terminal_writestring("Hello, kernel World!\n");
+	terminal_writestring("Welcome to gjost\n");
 
-	// asm volatile("int $3"); // this is a breakpoint
+	if (check_apic()) {
+		terminal_writestring("APIC detected.\n");
+	} else {
+		terminal_writestring("APIC not detected.\n");
+		terminal_writestring("This kernel requires APIC support.\n");
+		return;
+	}
 
 	terminal_writestring("This is a test of the terminal.\n");
 	for (int i = 0; i < 26; i++) {
 		terminal_setcolor(vga_entry_color(i % 16, (i + 8) % 16));
 		terminal_putchar('A' + i);
-		delay_cycle(30000000);
+		delay_cycle(20000000);
 	}
 	terminal_setcolor(VGA_COLOR_WHITE);
 	terminal_putchar('\n');
