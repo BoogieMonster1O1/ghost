@@ -3,21 +3,6 @@
 #include "idt.h"
 #include "tty.h"
 
-static inline uint32_t read_apic_register(uint32_t *reg) {
-    return *reg;
-}
-
-#define APIC_VERSION_REGISTER (APIC_BASE + 0x30)
-
-// Function to check if the Local APIC is initialized
-int is_apic_initialized() {
-    uint32_t *apic_version_reg = (uint32_t *)APIC_VERSION_REGISTER;
-    uint32_t version = read_apic_register(apic_version_reg);
-
-    // Check if the version is valid (should not be zero)
-    return (version);
-}
-
 void kernel_main(void) {
     idt_init();
     mask_interrupts();
