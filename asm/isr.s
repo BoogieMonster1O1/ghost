@@ -121,48 +121,26 @@ isr_control_protection_exception_21:
     call handle_control_protection_exception
     iret
 
-isr_reserved_22:
-    call handle_reserved
-    iret
-
-isr_reserved_23:
-    call handle_reserved
-    iret
-
-isr_reserved_24:
-    call handle_reserved
-    iret
-
-isr_reserved_25:
-    call handle_reserved
-    iret
-
-isr_reserved_26:
-    call handle_reserved
-    iret
-
-isr_reserved_27:
-    call handle_reserved
-    iret
-
-isr_reserved_28:
-    call handle_reserved
-    iret
-
-isr_reserved_29:
-    call handle_reserved
-    iret
-
 isr_err_security_exception_30:
     call handle_security_exception
     iret
 
-isr_reserved_31:
+isr_reserved:
     call handle_reserved
     iret
 
-.global isr_stub_table
-isr_stub_table:
+.global isr_timer_32, isr_keyboard_33
+
+isr_interrupt_32:
+    call handle_timer_interrupt
+    iret
+
+isr_interrupt_33:
+    call handle_interrupt_33
+    iret
+
+.global isr_table
+isr_table:
     .long isr_divide_error_0
     .long isr_debug_1
     .long isr_nmi_2
@@ -178,20 +156,22 @@ isr_stub_table:
     .long isr_err_stack_segment_fault_12
     .long isr_err_general_protection_fault_13
     .long isr_err_page_fault_14
-    .long isr_reserved_15
+    .long isr_reserved
     .long isr_x87_floating_point_16
     .long isr_err_alignment_check_17
     .long isr_machine_check_18
     .long isr_simd_floating_point_19
     .long isr_virtualization_20
     .long isr_control_protection_exception_21
-    .long isr_reserved_22
-    .long isr_reserved_23
-    .long isr_reserved_24
-    .long isr_reserved_25
-    .long isr_reserved_26
-    .long isr_reserved_27
-    .long isr_reserved_28
-    .long isr_reserved_29
+    .long isr_reserved
+    .long isr_reserved
+    .long isr_reserved
+    .long isr_reserved
+    .long isr_reserved
+    .long isr_reserved
+    .long isr_reserved
+    .long isr_reserved
     .long isr_err_security_exception_30
-    .long isr_reserved_31
+    .long isr_reserved
+    .long isr_interrupt_32
+    .long isr_interrupt_33

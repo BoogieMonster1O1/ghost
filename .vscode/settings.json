@@ -6,6 +6,10 @@
         "stdbool.h": "c",
         "tty.h": "c",
         "vga.h": "c",
-        "i386.h": "c"
-    }
+        "i386.h": "c",
+        "cstdint": "c",
+        "cpuid.h": "c",
+        "apic.h": "c"
+    },
+    "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}"
 }
