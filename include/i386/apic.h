@@ -14,14 +14,27 @@
 #define PIC2_DATA 0xA1
 
 #define IOAPIC_BASE 0xFEC00000
-#define IOAPIC_REDIRECTION_TABLE 0x10
 #define IOAPIC_TIMER_VECTOR 0x20
 #define IOAPIC_KEYBOARD_VECTOR 0x21
+
+#define PIT_FREQUENCY 1193182
+
+static inline void apic_write(uint32_t offset, uint32_t value) {
+    volatile uint32_t *apic_reg = (uint32_t *)(APIC_BASE + offset);
+    *apic_reg = value;
+}
+
+static inline uint32_t apic_read(uint32_t offset) {
+    volatile uint32_t *apic_reg = (uint32_t *)(APIC_BASE + offset);
+    return *apic_reg;
+}
 
 void apic_init();
 
 bool check_apic();
 
 void mask_interrupts();
+
+void initialize_timer();
 
 #endif

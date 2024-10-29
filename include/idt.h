@@ -4,7 +4,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 
-#define IDT_MAX_DESCRIPTORS 34  // 32 exceptions + 2 user interrupts
+#define IDT_MAX_DESCRIPTORS 32  // 32 exceptions
 
 extern void* isr_table[];
 

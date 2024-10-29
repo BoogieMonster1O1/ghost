@@ -9,7 +9,11 @@
         "i386.h": "c",
         "cstdint": "c",
         "cpuid.h": "c",
-        "apic.h": "c"
+        "apic.h": "c",
+        "asm.h": "c",
+        "cstdio": "c",
+        "__verbose_abort": "c",
+        "stdint.h": "c"
     },
     "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 4, ColumnLimit: 0}"
 }
